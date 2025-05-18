@@ -1,0 +1,24 @@
+﻿@model GymManagement.Models.Member
+
+@{
+    ViewBag.Title = "Chi tiết Hội viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Chi tiết Hội viên</h2>
+
+    <dl class="row">
+        <dt class="col-sm-3">Họ tên</dt>
+        <dd class="col-sm-9">@Model.FullName</dd>
+
+        <dt class="col-sm-3">Email</dt>
+        <dd class="col-sm-9">@Model.Email</dd>
+
+        <dt class="col-sm-3">Ngày đăng ký</dt>
+        <dd class="col-sm-9">@Model.CreatedAt.ToString("dd/MM/yyyy")</dd>
+    </dl>
+
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary ml-2" })
+</div>
