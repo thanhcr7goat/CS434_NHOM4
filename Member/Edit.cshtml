@@ -1,0 +1,44 @@
+﻿@model GymManagement.Models.Member
+
+@{
+    ViewBag.Title = "Chỉnh sửa Hội viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Chỉnh sửa Thông tin Hội viên</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.ID)
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.FullName)
+            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+        </div>
+
+        <!-- 🔽 DROPDOWN GÓI TẬP -->
+        <div class="form-group">
+            @Html.LabelFor(m => m.PackageId, "Gói tập")
+            @Html.DropDownListFor(m => m.PackageId, (SelectList)ViewBag.PackageId, "-- Chọn gói tập --", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.PackageId, "", new { @class = "text-danger" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+        @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary ml-2" })
+    }
+</div>

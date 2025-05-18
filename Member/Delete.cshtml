@@ -1,0 +1,29 @@
+﻿@model GymManagement.Models.Member
+
+@{
+    ViewBag.Title = "Xoá Hội viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-danger">Xác nhận Xoá Hội viên</h2>
+
+    <dl class="row">
+        <dt class="col-sm-3">Họ tên</dt>
+        <dd class="col-sm-9">@Model.FullName</dd>
+
+        <dt class="col-sm-3">Email</dt>
+        <dd class="col-sm-9">@Model.Email</dd>
+
+        <dt class="col-sm-3">Ngày đăng ký</dt>
+        <dd class="col-sm-9">@Model.CreatedAt.ToString("dd/MM/yyyy")</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="id" value="@Model.ID" />
+        <button type="submit" class="btn btn-danger">Xác nhận Xoá</button>
+        @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-secondary ml-2" })
+    }
+</div>
